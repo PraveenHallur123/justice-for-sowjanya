@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Justice for Sowjanya</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&display=swap');
+
+        body {
+            font-family: 'Noto Sans Kannada', sans-serif;
+            background-color: #121212;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 30px;
+            overflow-x: hidden;
+            background: url('https://source.unsplash.com/1600x900/?candle') no-repeat center center/cover;
+            animation: fadeInBackground 3s ease-in-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo {
+            width: 120px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #ff5252;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #cccccc;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .hashtag {
+            font-size: 1rem;
+            color: #ff5252;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid #444;
+            background-color: #2c2c2c;
+            color: #fff;
+            border-radius: 8px;
+            outline: none;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #ff5252;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        .comments-section {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .comment {
+            padding: 10px;
+            background-color: #2c2c2c;
+            border-left: 4px solid #ff5252;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.5s ease;
+            transition: all 0.3s ease;
+        }
+
+        .comment strong {
+            color: #ff5252;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+            background-color: transparent;
+            border: none;
+            color: #ff5252;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            color: #ffa726;
+        }
+
+        .delete-btn:hover {
+            color: #f44336;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Logo -->
+    <img src="1.jfif" alt="Justice Logo" class="logo">
+
+    <h1>ಸೌಜನ್ಯಗೆ ನ್ಯಾಯ ದೊರಕಲಿ! 💔🙏🏻</h1>
+    <p>"ನಮಗೆ ನ್ಯಾಯ ಬೇಕು, ಸೌಜನ್ಯಗೆ ನ್ಯಾಯ ದೊರಕದವರೆಗೂ ನಾವು ನಿಲ್ಲಲ್ಲ!"</p>
+    <div class="hashtag">#JusticeForSowjanya #ನ್ಯಾಯಕ್ಕಾಗಿ_ಹೋರಾಟ #ನ್ಯಾಯ_ಸಾಧನೆ</div>
+    
+    <input type="text" id="name" class="input-box" placeholder="ನಿಮ್ಮ ಹೆಸರು..." />
+    <textarea id="opinion" class="input-box" placeholder="ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."></textarea>
+    <button class="btn" onclick="submitOpinion()">ಅಭಿಪ್ರಾಯವನ್ನು ಸೇರಿಸಿ</button>
+
+    <div class="comments-section" id="comments-section">
+        <h2>ಅಭಿಪ್ರಾಯಗಳು:</h2>
+    </div>
+</div>
+
+<script>
+    function loadComments() {
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+        const commentSection = document.getElementById('comments-section');
+        commentSection.innerHTML = '<h2>ಅಭಿಪ್ರಾಯಗಳು:</h2>';
+        comments.forEach((comment, index) => addComment(comment.name, comment.opinion, index));
+    }
+
+    function submitOpinion() {
+        const name = document.getElementById('name').value.trim();
+        const opinion = document.getElementById('opinion').value.trim();
+
+        if (name && opinion) {
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.push({ name, opinion });
+            localStorage.setItem('comments', JSON.stringify(comments));
+            loadComments();
+            document.getElementById('name').value = '';
+            document.getElementById('opinion').value = '';
+        }
+    }
+
+    function addComment(name, opinion, index) {
+        const commentSection = document.getElementById('comments-section');
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+        commentElement.innerHTML = `
+            <div>
+                <strong>${name}:</strong> ${opinion}
+            </div>
+            <div class="actions">
+                <button class="edit-btn" onclick="editComment(${index})">Edit</button>
+                <button class="delete-btn" onclick="deleteComment(${index})">Delete</button>
+            </div>
+        `;
+        commentSection.appendChild(commentElement);
+    }
+
+    function deleteComment(index) {
+        const comments = JSON.parse(localStorage.getItem('comments'));
+        comments.splice(index, 1);
+        localStorage.setItem('comments', JSON.stringify(comments));
+        loadComments();
+    }
+
+    function editComment(index) {
+        const comments = JSON.parse(localStorage.getItem('comments'));
+        const comment = comments[index];
+        document.getElementById('name').value = comment.name;
+        document.getElementById('opinion').value = comment.opinion;
+        deleteComment(index);
+    }
+
+    window.onload = loadComments;
+</script>
+
+</body>
+</html>
